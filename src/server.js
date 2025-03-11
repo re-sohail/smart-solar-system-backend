@@ -50,6 +50,7 @@ const startServer = async () => {
   try {
     await dbConnect();
 
+    // Only start the server if not deployed in a serverless environment
     if (!process.env.VERCEL) {
       const server = app.listen(PORT, () => {
         logger.info(`Server is running on port ${PORT}`);
@@ -73,9 +74,10 @@ const startServer = async () => {
   }
 };
 
-// Remove duplicate startServer() call at the bottom
-if (process.env.VERCEL) {
-  module.exports = app;
-} else {
+if (!process.env.VERCEL) {
+  // Only start the server locally
   startServer();
+} else {
+  // When on Vercel, export the app so that the serverless function can handle the requests
+  module.exports = app;
 }
