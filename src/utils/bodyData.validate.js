@@ -1,5 +1,6 @@
 const joi = require("joi");
 
+// Register Schema
 const registerSchema = joi.object({
   firstName: joi
     .string()
@@ -25,6 +26,13 @@ const registerSchema = joi.object({
     "string.empty": "Email Address is required",
     "string.email": "Invalid Email Address",
     "any.required": "Email Address is required",
+  }),
+  password: joi.string().required().trim().min(8).max(255).messages({
+    "string.base": "Password must be a string",
+    "string.empty": "Password is required",
+    "string.min": "Password must be at least {#limit} characters",
+    "string.max": "Password must be at most {#limit} characters",
+    "any.required": "Password is required",
   }),
   mobileNo: joi.string().required().trim().max(15).messages({
     "string.base": "Mobile Number must be a string",
@@ -55,6 +63,24 @@ const registerSchema = joi.object({
   }),
 });
 
+// Login Schema
+const loginSchema = joi.object({
+  email: joi.string().required().trim().email().messages({
+    "string.base": "Email Address must be a string",
+    "string.empty": "Email Address is required",
+    "string.email": "Invalid Email Address",
+    "any.required": "Email Address is required",
+  }),
+  password: joi.string().required().trim().min(8).max(255).messages({
+    "string.base": "Password must be a string",
+    "string.empty": "Password is required",
+    "string.min": "Password must be at least {#limit} characters",
+    "string.max": "Password must be at most {#limit} characters",
+    "any.required": "Password is required",
+  }),
+});
+
+// confirm OTP schema
 const confirmOtpSchema = joi.object({
   email: joi.string().required().trim().email().messages({
     "string.base": "Email Address must be a string",
@@ -69,6 +95,21 @@ const confirmOtpSchema = joi.object({
     "string.max": "OTP must be at most {#limit} characters",
     "any.required": "OTP is required",
   }),
-})
+});
 
-module.exports = { registerSchema, confirmOtpSchema };
+// admin approve user schema
+const approveUserSchema = joi.object({
+  status: joi.string().required().valid("approved", "rejected").messages({
+    "string.base": "Status must be a string",
+    "string.empty": "Status is required",
+    "any.only": "Status must be either approved or rejected",
+    "any.required": "Status is required",
+  }),
+});
+
+module.exports = {
+  registerSchema,
+  loginSchema,
+  confirmOtpSchema,
+  approveUserSchema,
+};

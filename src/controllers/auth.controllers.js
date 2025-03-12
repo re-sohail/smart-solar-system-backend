@@ -2,6 +2,8 @@ const User = require("../models/user.model");
 const OTPConfirm = require("../models/otpConfirm");
 const generateOTP = require("../utils/generateOTP");
 const sendOTP = require("../utils/sendOTP");
+const bcrypt = require("bcryptjs");
+const e = require("express");
 
 const registerUser = async (req, res) => {
   try {
@@ -22,7 +24,7 @@ const registerUser = async (req, res) => {
 
     if (isMobileNoExist) {
       return res.sendError({
-        message: "User already exists with the given mobile number",
+        message: "Mobile number is already registered",
         statusCode: 400,
       });
     }
@@ -52,53 +54,64 @@ const registerUser = async (req, res) => {
 
     // Return the success response
     res.sendSuccess({
-      message: "User registered successfully",
-      data: user,
+      message: "OTP sent successfully",
     });
   } catch (error) {
     res.sendError({
       message: "Server Issue Occurred",
       statusCode: 500,
-      error: error,
+      error: error.message,
     });
-    console.error("An unexpected error occurred", error);
+    console.error("An unexpected error occurred", error.message);
   }
 };
 
 const loginUser = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, password } = req.body;
 
     // Check if the user exists
     const isEmailExist = await User.findByEmail(email);
 
-    if (!isEmailExist) {
+    // Check if the email exists and its active status is true
+    if (!isEmailExist || !isEmailExist.isActive) {
       return res.sendError({
-        message: "User does not exist",
+        message: "Invalid Credentials",
         statusCode: 400,
       });
     }
 
-    // Generate OTP Function
-    const otp = generateOTP();
+    // Check if the password is correct
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      isEmailExist.password
+    );
 
-    // Send the OTP to the user
-    sendOTP(email, otp);
+    if (!isPasswordCorrect) {
+      return res.sendError({
+        message: "Invalid Credentials",
+        statusCode: 400,
+      });
+    }
 
-    // Delete the existing OTP
-    await OTPConfirm.findOneAndDelete({ email });
+    // JWT Token
+    const token = await isEmailExist.generateAuthToken();
 
-    // Save the OTP and Email
-    let otpConfirm = new OTPConfirm({
-      email,
-      otp,
+    // set token in cookie
+    res.cookie("token", token, {
+      expires: new Date(Date.now() + 86400000),
+      httpOnly: true,
+      secure: true,
+      sameSite: "Strict",
     });
-
-    await otpConfirm.save();
 
     // Return the success response
     res.sendSuccess({
-      message: "OTP sent successfully",
+      message: "User logged in successfully",
+      data: {
+        user: isEmailExist,
+        token,
+      },
     });
   } catch (error) {
     res.sendError({
@@ -133,6 +146,9 @@ const confirmOTP = async (req, res) => {
 
     // Delete the OTP
     await OTPConfirm.findOneAndDelete({ email });
+
+    // Update the user status
+    await User.findOneAndUpdate({ email }, { isActive: true }, { new: true });
 
     // Return the success response
     return res.sendSuccess({

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
@@ -28,6 +30,18 @@ const userSchema = new mongoose.Schema(
       validate: (value) => {
         if (!validator.isEmail(value)) {
           throw new Error("Invalid Email Address");
+        }
+      },
+    },
+    password: {
+      type: String,
+      required: [true, "Password is required"],
+      trim: true,
+      minLength: [8, "Password must be at least 8 characters"],
+      maxLength: [255, "Password must be at most 255 characters"],
+      validate: (value) => {
+        if (!validator.isStrongPassword(value)) {
+          throw new Error("Use a stronger password");
         }
       },
     },
@@ -92,20 +106,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Status is required"],
       enum: {
-        values: ["pending", "active", "inactive"],
-        message: "Status must be either pending, active, or inactive",
+        values: ["pending", "approved", "rejected"],
+        message: "Status must be either pending, approved, or rejected",
       },
       default: "pending",
     },
-    isApproved: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
     isActive: {
       type: Boolean,
+      default: false,
       required: true,
-      default: true,
     },
     lastLogin: Date,
     loginAttempts: {
@@ -128,6 +137,7 @@ const userSchema = new mongoose.Schema(
         delete ret._id;
         delete ret.firstName;
         delete ret.lastName;
+        delete ret.password;
         delete ret.__v;
         delete ret.loginAttempts;
         delete ret.accountLockedUntil;
@@ -160,8 +170,8 @@ userSchema.statics.findByEmail = async function (email) {
   return this.findOne({ email });
 };
 
-userSchema.statics.findByMobileNo = async function (mobileno) {
-  return this.findOne({ mobileno });
+userSchema.statics.findByMobileNo = async function (mobileNo) {
+  return this.findOne({ mobileNo });
 };
 
 userSchema.query.byRole = function (role) {
@@ -170,6 +180,24 @@ userSchema.query.byRole = function (role) {
 userSchema.query.byStatus = function (status) {
   return this.where({ status });
 };
+
+// Generate JWT Token
+userSchema.methods.generateAuthToken = async function () {
+  const token = jwt.sign(
+    { _id: this._id, role: this.role, email: this.email },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN }
+  );
+  return token;
+};
+
+// Hash the password before saving
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 12);
+  }
+  next();
+});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

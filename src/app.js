@@ -3,6 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const routes = require("./routes/index");
 const errorHandler = require("./api/middleware/errorHandler");
@@ -26,6 +27,10 @@ app.use(cors());
 // Compress responses
 app.use(compression());
 
+// Cookie Parser
+app.use(cookieParser());
+
+// Body Parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
