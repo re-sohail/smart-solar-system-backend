@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Mobile Number is required"],
       trim: true,
-      // unique: [true, "Mobile Number is already registered"],
+      unique: false,
       maxLength: [20, "Mobile Number must be at most 15 characters"],
       // validate: (value) => {
       //   if (!validator.isMobilePhone(value, "any")) {
@@ -161,7 +161,6 @@ userSchema.index({
   isActive: 1,
   isApproved: 1,
   email: 1,
-  mobileNo: 1,
 });
 
 // Virtuals
