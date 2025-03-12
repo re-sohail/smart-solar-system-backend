@@ -12,7 +12,7 @@ const registerUser = async (req, res) => {
     // Check existing user
     const [isEmailExist, isMobileNoExist] = await Promise.all([
       User.findByEmail(userData.email),
-      User.findByMobileNo(userData.mobileNo),
+      // User.findByMobileNo(userData.mobileNo),
     ]);
 
     if (isEmailExist) {
@@ -22,12 +22,12 @@ const registerUser = async (req, res) => {
       });
     }
 
-    if (isMobileNoExist) {
-      return res.sendError({
-        message: "Mobile number is already registered",
-        statusCode: 400,
-      });
-    }
+    // if (isMobileNoExist) {
+    //   return res.sendError({
+    //     message: "Mobile number is already registered",
+    //     statusCode: 400,
+    //   });
+    // }
 
     // Create a new user
     const user = new User(userData);

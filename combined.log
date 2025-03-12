@@ -1219,3 +1219,15 @@
 {"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:42:34"}
 {"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:42:34"}
 {"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:42:34"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:46:18"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:46:18"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:46:18"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:46:32"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:46:32"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:46:32"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:46:37"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:46:37"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:46:37"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:46:43"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:46:43"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:46:43"}
