@@ -44,23 +44,35 @@ const registerSchema = joi.object({
     "string.base": "Address must be a string",
     "string.max": "Address must be at most {#limit} characters",
   }),
-  city: joi.string().optional().trim().max(50).messages({
+  city: joi.string().required().trim().max(50).messages({
     "string.base": "City must be a string",
     "string.max": "City must be at most {#limit} characters",
+    "any.required": "City is required",
   }),
-  postalCode: joi.string().required().trim().messages({
-    "string.base": "Postal Code must be a string",
-    "string.empty": "Postal Code is required",
-    "any.required": "Postal Code is required",
-  }),
-  state: joi.string().optional().trim().max(50).messages({
-    "string.base": "State must be a string",
-    "string.max": "State must be at most {#limit} characters",
-  }),
-  country: joi.string().optional().trim().max(50).messages({
-    "string.base": "Country must be a string",
-    "string.max": "Country must be at most {#limit} characters",
-  }),
+  // postalCode: joi.string().optional().trim().messages({
+  //   "string.base": "Postal Code must be a string",
+  //   "string.empty": "Postal Code is required",
+  //   "any.required": "Postal Code is required",
+  // }),
+  // state: joi.string().optional().trim().max(50).messages({
+  //   "string.base": "State must be a string",
+  //   "string.max": "State must be at most {#limit} characters",
+  // }),
+  // country: joi.string().optional().trim().max(50).messages({
+  //   "string.base": "Country must be a string",
+  //   "string.max": "Country must be at most {#limit} characters",
+  // }),
+  role: joi
+    .string()
+    .optional()
+    .trim()
+    .valid("user", "vender")
+    .default("user")
+    .messages({
+      "string.base": "Role must be a string",
+      "string.empty": "Role is required",
+      "any.only": "Role must be either user or vender",
+    }),
 });
 
 // Login Schema

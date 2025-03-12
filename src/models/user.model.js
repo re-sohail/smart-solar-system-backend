@@ -60,35 +60,39 @@ const userSchema = new mongoose.Schema(
     address: {
       type: String,
       trim: true,
+      required: [true, "Address is required"],
       maxLength: [255, "Address must be at most 255 characters"],
     },
     city: {
       type: String,
-      required: false,
+      required: [true, "City is required"],
       trim: true,
       maxLength: [50, "City must be at most 50 characters"],
     },
     postalCode: {
       type: String,
-      required: [true, "Postal Code is required"],
+      default: "",
+      // required: [true, "Postal Code is required"],
       trim: true,
       maxLength: [10, "Postal Code must be at most 10 characters"],
-      validate: (value) => {
-        if (!validator.isPostalCode(value, "any")) {
-          throw new Error("Invalid Postal Code");
-        }
-      },
+      // validate: (value) => {
+      //   if (!validator.isPostalCode(value, "any")) {
+      //     throw new Error("Invalid Postal Code");
+      //   }
+      // },
     },
     state: {
       type: String,
       trim: true,
-      required: [true, "State is required"],
+      default: "",
+      // required: [true, "State is required"],
       uppercase: true,
       maxLength: [50, "State must be at most 50 characters"],
     },
     country: {
       type: String,
-      required: [true, "Country is required"],
+      // required: [true, "Country is required"],
+      default: "",
       trim: true,
       uppercase: true,
       maxLength: [50, "Country must be at most 50 characters"],
@@ -97,7 +101,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Role is required"],
       enum: {
-        values: ["admin", "user", "guest"],
+        values: ["admin", "user", "vender", "guest"],
         message: "Role must be either guest, user, or admin",
       },
       default: "guest",

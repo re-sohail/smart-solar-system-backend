@@ -1166,3 +1166,44 @@
 {"level":"info","message":"\u001b[0mGET /api/v1/admin/user-list \u001b[32m200\u001b[0m 349.325 ms - -\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:15:26"}
 {"level":"info","message":"\u001b[0mOPTIONS /api/v1/auth/login \u001b[32m204\u001b[0m 1.871 ms - 0\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:29:01"}
 {"level":"info","message":"\u001b[0mPOST /api/v1/auth/login \u001b[32m200\u001b[0m 788.418 ms - 621\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:29:02"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 21:31:31"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 21:31:31"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 21:31:31"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 21:46:55"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 21:46:55"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 21:46:55"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/register \u001b[33m400\u001b[0m 265.162 ms - 103\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:47:06"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/register \u001b[31m500\u001b[0m 339.312 ms - 129\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:47:20"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/register \u001b[32m200\u001b[0m 1496.847 ms - 74\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:48:34"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/confirm-otp \u001b[32m200\u001b[0m 563.612 ms - 79\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:49:43"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/login \u001b[32m200\u001b[0m 645.960 ms - 599\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:50:15"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/login \u001b[32m200\u001b[0m 667.394 ms - 595\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:52:04"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 21:52:31"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 21:52:31"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 21:52:31"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 21:52:55"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 21:52:55"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 21:52:55"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/register \u001b[32m200\u001b[0m 1310.618 ms - 74\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:53:06"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/login \u001b[33m400\u001b[0m 197.897 ms - 74\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:53:22"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/confirm-otp \u001b[32m200\u001b[0m 548.251 ms - 79\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:53:47"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/login \u001b[32m200\u001b[0m 681.135 ms - 599\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:54:00"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/login \u001b[32m200\u001b[0m 678.407 ms - 595\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:54:17"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 21:54:35"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 21:54:35"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 21:54:35"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 21:55:23"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 21:55:23"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 21:55:23"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/register \u001b[31m500\u001b[0m 291.805 ms - 129\u001b[0m","service":"user-service","timestamp":"2025-03-12 21:59:33"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:00:05"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:00:05"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:00:05"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/register \u001b[31m500\u001b[0m 239.438 ms - 129\u001b[0m","service":"user-service","timestamp":"2025-03-12 22:00:07"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:00:52"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:00:52"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:00:52"}
+{"level":"info","message":"Mongoose connection established successfully.","service":"user-service","timestamp":"2025-03-12 22:00:59"}
+{"level":"info","message":"MongoDB connected successfully","service":"user-service","timestamp":"2025-03-12 22:00:59"}
+{"level":"info","message":"Server is running on port 4000","service":"user-service","timestamp":"2025-03-12 22:00:59"}
+{"level":"info","message":"\u001b[0mPOST /api/v1/auth/register \u001b[32m200\u001b[0m 1402.579 ms - 74\u001b[0m","service":"user-service","timestamp":"2025-03-12 22:01:09"}

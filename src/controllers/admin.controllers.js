@@ -79,7 +79,7 @@ const approveUser = async (req, res) => {
   // Find the user by ID and update the isApproved field.
   const user = await User.findByIdAndUpdate(
     userId,
-    { status, role: status === "approved" ? "user" : "guest" },
+    { status },
     { new: true, select: "-password" }
   );
 
