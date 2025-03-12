@@ -55,6 +55,7 @@ const registerUser = async (req, res) => {
     // Return the success response
     res.sendSuccess({
       message: "OTP sent successfully",
+      statusCode: 200,
     });
   } catch (error) {
     res.sendError({
@@ -153,6 +154,7 @@ const confirmOTP = async (req, res) => {
     // Return the success response
     return res.sendSuccess({
       message: "OTP confirmed successfully",
+      statusCode: 200,
     });
   } catch (error) {
     res.sendError({
