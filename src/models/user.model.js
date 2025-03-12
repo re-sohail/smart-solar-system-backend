@@ -50,12 +50,12 @@ const userSchema = new mongoose.Schema(
       required: [true, "Mobile Number is required"],
       trim: true,
       unique: [true, "Mobile Number is already registered"],
-      maxLength: [15, "Mobile Number must be at most 15 characters"],
-      validate: (value) => {
-        if (!validator.isMobilePhone(value, "any")) {
-          throw new Error("Invalid Mobile Number");
-        }
-      },
+      maxLength: [20, "Mobile Number must be at most 15 characters"],
+      // validate: (value) => {
+      //   if (!validator.isMobilePhone(value, "any")) {
+      //     throw new Error("Invalid Mobile Number");
+      //   }
+      // },
     },
     address: {
       type: String,
