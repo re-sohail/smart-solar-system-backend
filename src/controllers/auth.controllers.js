@@ -60,7 +60,7 @@ const registerUser = async (req, res) => {
     });
   } catch (error) {
     res.sendError({
-      message: "Server Issue Occurred",
+      message: error.message || "Server Issue Occurred",
       statusCode: 500,
       error: error.message,
     });
@@ -79,6 +79,13 @@ const loginUser = async (req, res) => {
     if (!isEmailExist || !isEmailExist.isActive) {
       return res.sendError({
         message: "Invalid Credentials",
+        statusCode: 400,
+      });
+    }
+
+    if (isEmailExist.status === "pending") {
+      return res.sendError({
+        message: "Your account is not active yet",
         statusCode: 400,
       });
     }

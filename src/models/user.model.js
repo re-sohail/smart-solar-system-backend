@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Mobile Number is required"],
       trim: true,
-      unique: false,
+      unique: [true, "Mobile Number is already registered"],
       maxLength: [20, "Mobile Number must be at most 15 characters"],
       // validate: (value) => {
       //   if (!validator.isMobilePhone(value, "any")) {
