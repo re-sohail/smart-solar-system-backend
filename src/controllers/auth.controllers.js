@@ -113,6 +113,7 @@ const loginUser = async (req, res) => {
         user: isEmailExist,
         token,
       },
+      statusCode: 200,
     });
   } catch (error) {
     res.sendError({
